@@ -1,0 +1,31 @@
+namespace = sdf
+
+# Monthly: refresh the guard while a Scan Debris contract's debris waits (sdf_refresh_scan_guard).
+country_event = {
+	id = sdf.1
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		is_nomadic = yes
+		has_event_chain = contract_scan_debris_chain
+	}
+	immediate = { sdf_refresh_scan_guard = yes }
+}
+
+# A fleet enters a system: refresh at once, so a scan started before the next monthly pulse (ship
+# sent right after accepting) is covered too.
+fleet_event = {
+	id = sdf.2
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = owner
+		owner = {
+			is_nomadic = yes
+			has_event_chain = contract_scan_debris_chain
+		}
+	}
+	immediate = {
+		owner = { sdf_refresh_scan_guard = yes }
+	}
+}

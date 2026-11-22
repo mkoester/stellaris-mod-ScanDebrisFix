@@ -1,0 +1,30 @@
+# this = a nomadic country. While its Scan Debris contract's debris still waits to be scanned, keep
+# vanilla's guard flag set, so starting the analysis does not cancel the contract.
+#
+# Vanilla 4.5.4 cancels the contract once `any_available_debris` finds none in the system and
+# `scan_debris_contract_scanned` is unset. A debris project being analysed no longer counts as
+# available, and the flag is only set when the scan completes (nomads.3035), so the contract fails
+# the day the analysis starts. 360 days outlasts any scan (DEBRIS_RESEARCH_TIME = 90). Debris that
+# really runs out (DEBRIS_DAYS = 1800) stops the refresh, and the contract is cancelled up to 360
+# days later, as vanilla intends.
+#
+# The issuer flags the target system with `debris_contract_system@<issuer>` when it issues the
+# contract (nomads_events_1.txt, the issuing event). The operator's ID is in no flag (2026-11-22
+# save: only the issuer's and the system's own IDs), so the issuer is the way back to the system.
+sdf_refresh_scan_guard = {
+	save_event_target_as = sdf_operator
+	every_owned_contract = {
+		limit = { is_mission_type = contract_scan_debris }
+		issuer = { save_event_target_as = sdf_issuer }
+		event_target:sdf_operator = {
+			if = {
+				limit = {
+					any_available_debris = {
+						solar_system = { has_star_flag = debris_contract_system@event_target:sdf_issuer }
+					}
+				}
+				set_timed_country_flag = { flag = scan_debris_contract_scanned days = 360 }
+			}
+		}
+	}
+}
