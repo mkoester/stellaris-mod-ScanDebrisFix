@@ -62,8 +62,11 @@ it targets. Vanilla never targets `contract_scan_debris`; `sdf.91` no longer doe
 now take it: accept before an AI nomad does.
 Run 3 (untargeted, 2200.11.02): issued (the issuer's `scan_debris_contract_active` is in the
 12.01 save), then gone without a message, and the debris with it: an untargeted contract that
-aborts before acceptance tells no one. What removes the debris within days is open; `sdf.92`
-logs daily for five days whether the issuer still sees it.
+aborts before acceptance tells no one. `sdf.92` logs daily for five days whether the issuer
+still sees it. Run 4 (2201.01.02): seen on the issue day, gone the next — and gone from the save,
+not only unavailable (debris lasts `DEBRIS_DAYS` 1800). Suspect, unconfirmed: our own arkship was
+in that system (Brightpool, runs 3 and 4) with the debris policy on Scavenge. Next: a system
+without our fleets (`sdf.90` warns).
 
 To check: the contract survives starting the analysis and completes; `error.log` has no `sdf_`
 lines; `has_country_flag = scan_debris_contract_scanned` is set while the contract waits.
