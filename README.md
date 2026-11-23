@@ -22,5 +22,10 @@ Once Paradox fixes the contract in the game, this mod will be retired.
   - `common/on_actions/sdf_on_actions.txt`, `events/sdf_events.txt` — monthly, and when a nomad's
     fleet enters a system.
 
+## Bugs and feedback
+
+In the [scan-debris-fix forum on Discord](https://discord.gg/INVITE). The bug itself is reported
+to Paradox (`docs/forum-bug-report.md`); once the game fixes it, this mod is retired.
+
 Unofficial fan project, not affiliated with Paradox Interactive. Stellaris and its game data are
 Paradox's.
