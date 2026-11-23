@@ -1,6 +1,6 @@
 # Scan Debris Contract Fix
 
-Stellaris mod (game **4.5.x**): a nomad's "Scan Debris" contract no longer fails the day its
+Stellaris mod (game **4.5.x and 4.6.0**): a nomad's "Scan Debris" contract no longer fails the day its
 science ship starts the analysis. Workspace context: `../AGENTS.md`. Private until published:
 publish only if the bug survives 4.6.0 (decided 2026-11-22), together with a Paradox forum bug
 report.
@@ -45,7 +45,16 @@ the flag only on completion. No line of the 4.6.0 release notes names the contra
 survives 4.6.0, the condition for publishing this mod with a forum bug report. Test run 1 on 4.6
 comes first.
 
-## Test run 1: not run yet
+## Test run 1: passed (2026-11-23, game 4.6.0)
+
+The user's campaign `roamingcybergang_387306957`, save `2227.09.01` (a contract accepted
+2227.06.01, analysis not started, saved before the mod existed). Control without the mod: the
+contract failed when the analysis started — **the bug survives 4.6.0**. With the mod: it survived
+the analysis. The ship had to leave the system once first: the known gap below (it was in the
+system before the guard was set). No `sdf_` line in `error.log`. The README names the gap and
+its workaround. Retire the mod once vanilla fixes the contract (user).
+
+## Test run 1: how it was found
 
 How (decided 2026-11-23, after seven helper runs): in the user's real campaign, accept the next
 Scan Debris contract the game issues by itself, send a science ship, start the analysis at once.
