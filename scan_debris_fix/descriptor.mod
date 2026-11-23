@@ -1,7 +1,8 @@
-version="0.1.0"
+version="1.0.0"
 tags={
 	"Fixes"
 	"Gameplay"
 }
 name="Scan Debris Contract Fix"
+picture="thumbnail.png"
 supported_version="v4.6.*"
