@@ -41,7 +41,7 @@ retire the mod (`AGENTS.md`).
 | Steam Workshop | `3844863561` | https://steamcommunity.com/sharedfiles/filedetails/?id=3844863561 |
 | Paradox Mods | `168883` | https://mods.paradoxplaza.com/mods/168883/Any |
 
-Published 2026-11-23 (Workshop public; Paradox Mods still answered 403 "User does not have access" to anonymous readers that evening, like Ancient Highway's 168844).
+Published 2026-11-23. Both stores public: Paradox Mods answered 403 "User does not have access" to anonymous readers at first, public by 21:30 that evening (version 2, uploaded with the `store/` text).
 
 Paradox bug report: https://forum.paradoxplaza.com/forum/threads/scan-debris-contract-fails-the-day-the-science-ship-starts-analysing-the-debris.1951553/ (posted 2026-11-23)
 
