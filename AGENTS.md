@@ -73,6 +73,11 @@ without our fleets. Selecting a star where we have no fleet does not work in gam
 Run 5 (Higma, 2201.04.02, no fleet of ours there): gone the day after again. So not scavenging.
 Runs 2-5 wrecked the issuer's own corvette; vanilla destroys another empire's fleet for the
 victor. Now a third AI empire's corvette.
+Run 6 (Korach, 2201.05.02): the third empire's wreck changed nothing — gone the day after; the
+user never saw the contract even on its issue day. Every issuer keeps `scan_debris_contract_active`
+(`on_stop` clears it only with an operator), so all stopped unaccepted. Open: does the debris
+vanish by itself (and the contract with it), or does the contract's stop take the debris? Control:
+`sdf.94`, the same debris with no contract, logged for five days.
 
 To check: the contract survives starting the analysis and completes; `error.log` has no `sdf_`
 lines; `has_country_flag = scan_debris_contract_scanned` is set while the contract waits.
