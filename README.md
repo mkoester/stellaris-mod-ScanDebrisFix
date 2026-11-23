@@ -25,7 +25,7 @@ Once Paradox fixes the contract in the game, this mod will be retired.
 ## Bugs and feedback
 
 In the comments on the mod's Steam Workshop page (no Discord forum: a small, temporary fix). The
-bug itself is reported to Paradox (`docs/forum-bug-report.md`); once the game fixes it, this mod
+bug itself is [reported to Paradox](https://forum.paradoxplaza.com/forum/threads/scan-debris-contract-fails-the-day-the-science-ship-starts-analysing-the-debris.1951553/); once the game fixes it, this mod
 is retired.
 
 Unofficial fan project, not affiliated with Paradox Interactive. Stellaris and its game data are

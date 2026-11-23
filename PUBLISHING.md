@@ -31,8 +31,8 @@ retire the mod (`AGENTS.md`).
       `../docs/store-more-from-me.md` (and its "Where it goes" table), then re-paste the blocks
       into every other public mod's descriptions; a line in
       `~/Projects/workspace_oss/releases/mods.txt`.
-- [ ] Post `docs/forum-bug-report.md` in Paradox's Stellaris bug report forum; link the thread
-      here.
+- [x] Post `docs/forum-bug-report.md` in Paradox's Stellaris bug report forum (2026-11-23, linked
+      above).
 - [ ] GitHub repo public; workspace `AGENTS.md`: move ScanDebrisFix to the public list.
 
 ## Published IDs
@@ -44,7 +44,7 @@ retire the mod (`AGENTS.md`).
 
 Published 2026-11-23 (Workshop public; Paradox Mods still answered 403 "User does not have access" to anonymous readers that evening, like Ancient Highway's 168844).
 
-Paradox bug report: — (not posted yet)
+Paradox bug report: https://forum.paradoxplaza.com/forum/threads/scan-debris-contract-fails-the-day-the-science-ship-starts-analysing-the-debris.1951553/ (posted 2026-11-23)
 
 ## "More from me" lines (for `../docs/store-more-from-me.md`, once the IDs exist)
 

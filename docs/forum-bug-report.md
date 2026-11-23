@@ -1,8 +1,8 @@
 # Bug report for Paradox's forum
 
 Draft for the Stellaris bug report forum (forum.paradoxplaza.com, "Stellaris Bug Reports"). Fill
-the form's fields with the sections below; attach the save. Posted: — (link it in
-`PUBLISHING.md` once posted).
+the form's fields with the sections below; attach the save. Posted 2026-11-23:
+https://forum.paradoxplaza.com/forum/threads/scan-debris-contract-fails-the-day-the-science-ship-starts-analysing-the-debris.1951553/
 
 **Attach:** `roamingcybergang_387306957/2227.09.01.sav` (a 4.5.4 save that loads in 4.6.0: the
 contract is accepted, its analysis not started yet). Without mods enabled, from a copy.

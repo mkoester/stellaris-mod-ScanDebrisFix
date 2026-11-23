@@ -52,7 +52,8 @@ The user's campaign `roamingcybergang_387306957`, save `2227.09.01` (a contract 
 contract failed when the analysis started — **the bug survives 4.6.0**. With the mod: it survived
 the analysis. The ship had to leave the system once first: the known gap below (it was in the
 system before the guard was set). No `sdf_` line in `error.log`. The README names the gap and
-its workaround. Retire the mod once vanilla fixes the contract (user).
+its workaround. Retire the mod once vanilla fixes the contract (user); the bug report:
+https://forum.paradoxplaza.com/forum/threads/scan-debris-contract-fails-the-day-the-science-ship-starts-analysing-the-debris.1951553/
 
 ## Test run 1: how it was found
 
