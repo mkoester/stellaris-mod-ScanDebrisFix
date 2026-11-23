@@ -48,11 +48,18 @@ comes first.
 ## Test run 1: not run yet
 
 How (2026-11-23): a throwaway game as a nomad empire, `event devtools.5` (communications), select a
-star near the arkship, `event sdf.90` (`events/sdf_debug_events.txt`: an AI empire loses a science
-ship there, its debris; a day later `sdf.91` issues the contract to us). Accept it, send a science
-ship, start the analysis at once. Untested whether script-made debris counts as
-`any_available_debris` for the issuer, and whether `issue_contract` checks `potential_issuer`:
-`game.log` shows both `SDF test` lines; if the contract never appears, that is where to look.
+star near the arkship, `event sdf.90` (`events/sdf_debug_events.txt`: an AI empire loses a
+corvette there, its debris; a day later `sdf.91` issues the contract there, untargeted). Accept
+it, send a science ship, start the analysis at once. Script-made debris does count as
+`any_available_debris` for the issuer (run 2's log); `game.log` shows each step's `SDF test` line.
+
+Tries so far (2026-11-23, throwaway game `roamingcybergang2`): three helper contracts, all
+aborted **on their issue day** (`MESSAGE_CONTRACT_ABORTED` dated the issue day), so the fix was
+never reached. The issuer saw the debris (`sdf.91`'s log), but `issue_contract` had
+`target = <us>`: a targeted contract's scope is the target (the save's mission: `scope` country 0,
+`from` the issuer), and `issued_abort_trigger` opens with `is_nomadic = yes` — true for the nomad
+it targets. Vanilla never targets `contract_scan_debris`; `sdf.91` no longer does. Any nomad may
+now take it: accept before an AI nomad does.
 
 To check: the contract survives starting the analysis and completes; `error.log` has no `sdf_`
 lines; `has_country_flag = scan_debris_contract_scanned` is set while the contract waits.
