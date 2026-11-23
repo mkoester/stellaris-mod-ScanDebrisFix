@@ -17,8 +17,7 @@ retire the mod (`AGENTS.md`).
       (512×512, our own art).
 - [x] `ls -A scan_debris_fix` lists only `common/ descriptor.mod events/ thumbnail.png` (the
       launcher uploads everything, including a stray `.claude/`).
-- [ ] Discord forum `scan-debris-fix` (MODS) and its invite: replace `INVITE` below and in
-      `README.md`, add the row in `../docs/discord.md`.
+- [x] No Discord forum: feedback goes to the Workshop page's comments (user, 2026-11-23).
 - [ ] Launcher closed → `scripts/link-mod.sh stellaris-mod-ScanDebrisFix/scan_debris_fix` →
       launcher open. On Linux the upload dialog may not see a **symlinked** mod: then copy the
       folder into `<user dir>/mod/` and upload the copy.
@@ -82,7 +81,7 @@ The mod notices a contract when one of your fleets enters a system, and once a m
 [/list]
 
 [h2]Bugs & feedback[/h2]
-Post them in the [url=https://discord.gg/INVITE]scan-debris-fix forum on Discord[/url].
+Leave a comment below.
 
 [i]Unofficial fan project, not affiliated with Paradox Interactive.[/i]
 ```
@@ -112,7 +111,7 @@ Compatibility
 • Once Paradox fixes the contract in the game, this mod will be retired.
 
 Bugs & feedback
-Post them in the scan-debris-fix forum on Discord: https://discord.gg/INVITE
+Leave a comment on the mod's Steam Workshop page: https://steamcommunity.com/sharedfiles/filedetails/?id=WORKSHOP_ID
 
 Unofficial fan project, not affiliated with Paradox Interactive.
 ```
