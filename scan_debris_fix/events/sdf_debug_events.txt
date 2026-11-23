@@ -3,9 +3,12 @@ namespace = sdf
 # Test shortcuts for a throwaway game (Test run 1). Play a nomad empire; run devtools.5 (or meet an
 # empire) first: the issuer needs communications with us. Select a star or a planet, then
 #   event sdf.90
-# An AI empire that can issue contracts loses a science ship there, leaving debris it owns
+# An AI empire that can issue contracts loses a corvette there, leaving debris it owns
 # (destroy_and_spawn_debris_for, effects.log); a day later (sdf.91) it issues the Scan Debris
 # contract there, for us only. Each step logs an "SDF test" line to game.log.
+# Run 1 (2026-11-23) used a science ship: the debris was gone by the next day and the contract
+# aborted on issue (MESSAGE_CONTRACT_ABORTED, dated the issue day). Vanilla destroys warships with
+# it (first_contact_events.txt); sdf.91 now logs whether the issuer sees the debris.
 
 event = {
 	id = sdf.90
@@ -28,14 +31,14 @@ event = {
 				name = "SDF Test Wreck"
 				effect = {
 					set_owner = event_target:sdf_test_issuer
-					create_ship = { name = random random_existing_design = science }
+					create_ship = { name = random random_existing_design = corvette }
 					set_location = event_target:sdf_test_system.star
 				}
 			}
 			last_created_fleet = { destroy_and_spawn_debris_for = event_target:sdf_test_issuer }
 			country_event = { id = sdf.91 days = 1 }
 			event_target:sdf_test_system = {
-				log = "SDF test: debris for \\[sdf_test_issuer.GetName] in \\[This.GetName]"
+				log = "SDF test: debris for [sdf_test_issuer.GetName] in [This.GetName]"
 			}
 		}
 	}
@@ -47,13 +50,20 @@ country_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {
+		if = {
+			limit = { any_available_debris = { solar_system = { is_same_value = event_target:sdf_test_system } } }
+			log = "SDF test: [Root.GetName] sees the debris - issuing"
+		}
+		else = {
+			log = "SDF test: [Root.GetName] sees no available debris there - the contract will abort"
+		}
 		issue_contract = {
 			contract = contract_scan_debris
 			location = event_target:sdf_test_system
 			target = event_target:sdf_test_operator
 		}
 		event_target:sdf_test_system = {
-			log = "SDF test: \\[sdf_test_issuer.GetName] issued Scan Debris in \\[This.GetName]"
+			log = "SDF test: [sdf_test_issuer.GetName] issued Scan Debris in [This.GetName]"
 		}
 		clear_global_event_target = sdf_test_system
 		clear_global_event_target = sdf_test_operator
