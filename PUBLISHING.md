@@ -21,10 +21,10 @@ retire the mod (`AGENTS.md`).
 - [ ] Launcher closed → `scripts/link-mod.sh stellaris-mod-ScanDebrisFix/scan_debris_fix` →
       launcher open. On Linux the upload dialog may not see a **symlinked** mod: then copy the
       folder into `<user dir>/mod/` and upload the copy.
-- [ ] Upload to **Steam Workshop** (description: BBCode below, then the "More from me" block from
+- [x] Upload to **Steam Workshop** (description: BBCode below, then the "More from me" block from
       `../docs/store-more-from-me.md`). A first upload starts **Hidden**: set it Public. The
       launcher writes `remote_file_id` into `descriptor.mod`: commit it.
-- [ ] Upload to **Paradox Mods** (plain text below; format headings, lists and links with the
+- [x] Upload to **Paradox Mods** (plain text below; format headings, lists and links with the
       website editor, then check the saved page). Its ID is `remotePdxId` in the launcher's
       `launcher-v2.sqlite` (`mods` table; read a copy).
 - [ ] IDs into the table below; this mod's line into both blocks of
@@ -39,19 +39,21 @@ retire the mod (`AGENTS.md`).
 
 | Store | Item ID | URL |
 |---|---|---|
-| Steam Workshop | — | — |
-| Paradox Mods | — | — |
+| Steam Workshop | `3844863561` | https://steamcommunity.com/sharedfiles/filedetails/?id=3844863561 |
+| Paradox Mods | `168883` | https://mods.paradoxplaza.com/mods/168883/Any |
+
+Published 2026-11-23 (Workshop public; Paradox Mods still answered 403 "User does not have access" to anonymous readers that evening, like Ancient Highway's 168844).
 
 Paradox bug report: — (not posted yet)
 
 ## "More from me" lines (for `../docs/store-more-from-me.md`, once the IDs exist)
 
 ```bbcode
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=WORKSHOP_ID]Scan Debris Contract Fix[/url] — nomads: the Scan Debris contract no longer fails the moment your science ship starts the analysis.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3844863561]Scan Debris Contract Fix[/url] — nomads: the Scan Debris contract no longer fails the moment your science ship starts the analysis.
 ```
 
 ```text
-• Scan Debris Contract Fix — nomads: the Scan Debris contract no longer fails the moment your science ship starts the analysis. https://mods.paradoxplaza.com/mods/PDX_ID/Any
+• Scan Debris Contract Fix — nomads: the Scan Debris contract no longer fails the moment your science ship starts the analysis. https://mods.paradoxplaza.com/mods/168883/Any
 ```
 
 ---
@@ -111,7 +113,7 @@ Compatibility
 • Once Paradox fixes the contract in the game, this mod will be retired.
 
 Bugs & feedback
-Leave a comment on the mod's Steam Workshop page: https://steamcommunity.com/sharedfiles/filedetails/?id=WORKSHOP_ID
+Leave a comment on the mod's Steam Workshop page: https://steamcommunity.com/sharedfiles/filedetails/?id=3844863561
 
 Unofficial fan project, not affiliated with Paradox Interactive.
 ```

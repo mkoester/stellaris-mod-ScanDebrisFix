@@ -62,4 +62,4 @@ debris_contract_system@<issuer>` on the target system (set in `on_accept`) inste
 available-debris iterator once the contract is accepted.
 
 A workaround mod keeps the guard flag set while the contract's debris waits: Scan Debris Contract
-Fix (Steam Workshop: WORKSHOP_ID).
+Fix (Steam Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=3844863561).
