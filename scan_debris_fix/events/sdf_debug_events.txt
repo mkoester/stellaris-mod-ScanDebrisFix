@@ -14,6 +14,9 @@ namespace = sdf
 # `target = <us>`: a targeted contract's scope is the target (the save's mission scope: country 0,
 # from = the issuer), and issued_abort_trigger opens with `is_nomadic = yes`. Vanilla never
 # targets contract_scan_debris; now neither do we.
+# Run 3: issued untargeted, then gone by the next autosave without a message (an untargeted contract
+# that aborts before acceptance tells no one), the debris too. sdf.92 now logs daily for five days
+# whether the issuer still sees the debris (issued_abort_trigger aborts the day it does not).
 
 
 event = {
@@ -89,9 +92,35 @@ country_event = {
 		event_target:sdf_test_system = {
 			log = "SDF test: [sdf_test_issuer.GetName] issued Scan Debris in [This.GetName]"
 		}
-		clear_global_event_target = sdf_test_system
-		clear_global_event_target = sdf_test_operator
-		clear_global_event_target = sdf_test_issuer
-		remove_global_flag = sdf_test_pending
+		set_variable = { which = sdf_test_days value = 0 }
+		country_event = { id = sdf.92 days = 1 }
+	}
+}
+
+# this = the issuer: daily for five days after issuing, does it still see the debris?
+country_event = {
+	id = sdf.92
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		change_variable = { which = sdf_test_days value = 1 }
+		if = {
+			limit = { any_available_debris = { solar_system = { is_same_value = event_target:sdf_test_system } } }
+			log = "SDF test: [GetDate] day [This.sdf_test_days] after issuing - [Root.GetName] still sees the debris"
+		}
+		else = {
+			log = "SDF test: [GetDate] day [This.sdf_test_days] after issuing - [Root.GetName] sees no debris: the contract aborts"
+		}
+		if = {
+			limit = { check_variable = { which = sdf_test_days value < 5 } }
+			country_event = { id = sdf.92 days = 1 }
+		}
+		else = {
+			clear_variable = sdf_test_days
+			clear_global_event_target = sdf_test_system
+			clear_global_event_target = sdf_test_operator
+			clear_global_event_target = sdf_test_issuer
+			remove_global_flag = sdf_test_pending
+		}
 	}
 }
