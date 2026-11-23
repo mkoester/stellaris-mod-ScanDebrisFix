@@ -47,14 +47,14 @@ comes first.
 
 ## Test run 1: not run yet
 
-How (2026-11-23): a throwaway game as a nomad empire, `event devtools.5` (communications), select a
-star near the arkship, `event sdf.90` (`events/sdf_debug_events.txt`: an AI empire loses a
-corvette there, its debris; a day later `sdf.91` issues the contract there, untargeted). Accept
-it, send a science ship, start the analysis at once. Script-made debris does count as
-`any_available_debris` for the issuer (run 2's log); `game.log` shows each step's `SDF test` line.
+How (decided 2026-11-23, after seven helper runs): in the user's real campaign, accept the next
+Scan Debris contract the game issues by itself, send a science ship, start the analysis at once.
+Check `game.log`/`error.log` and a save during the analysis. The helper events (`sdf.90`–`.94`)
+are removed: debris made by script lasts about a day (runs below), so no helper contract
+survived until it could be accepted.
 
-Tries so far (2026-11-23, throwaway game `roamingcybergang2`): three helper contracts, all
-aborted **on their issue day** (`MESSAGE_CONTRACT_ABORTED` dated the issue day), so the fix was
+Helper runs (2026-11-23, throwaway game `roamingcybergang2`; helpers since removed): three
+helper contracts, all aborted **on their issue day** (`MESSAGE_CONTRACT_ABORTED` dated the issue day), so the fix was
 never reached. The issuer saw the debris (`sdf.91`'s log), but `issue_contract` had
 `target = <us>`: a targeted contract's scope is the target (the save's mission: `scope` country 0,
 `from` the issuer), and `issued_abort_trigger` opens with `is_nomadic = yes` — true for the nomad
@@ -78,6 +78,11 @@ user never saw the contract even on its issue day. Every issuer keeps `scan_debr
 (`on_stop` clears it only with an operator), so all stopped unaccepted. Open: does the debris
 vanish by itself (and the contract with it), or does the contract's stop take the debris? Control:
 `sdf.94`, the same debris with no contract, logged for five days.
+**Run 7 (control, Higma, 2201.06.02): no contract, and the debris was still gone the next day.**
+Debris made by `destroy_and_spawn_debris_for` lasts about a day whatever happens (vanilla debris:
+`DEBRIS_DAYS` 1800). Every helper contract aborted for that reason, before anyone could accept:
+the helpers `sdf.90`–`.94` cannot test the fix. A test needs debris from real combat, or a Scan
+Debris contract the game issues by itself.
 
 To check: the contract survives starting the analysis and completes; `error.log` has no `sdf_`
 lines; `has_country_flag = scan_debris_contract_scanned` is set while the contract waits.
