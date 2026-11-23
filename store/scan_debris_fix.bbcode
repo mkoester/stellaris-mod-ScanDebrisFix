@@ -1,0 +1,25 @@
+[h1]Scan Debris Contract Fix[/h1]
+
+For nomadic empires (Nomads DLC): the [b]Scan Debris[/b] contract no longer fails the moment your science ship starts analysing the debris.
+
+[h2]The bug[/h2]
+Since 4.5.4 the contract cancels itself as soon as there is no debris left to scan in its system. Debris that is being analysed already counts as gone, so the contract fails the day you start the analysis, the one thing it asks you to do. 4.6.0 did not change that.
+
+[h2]The fix[/h2]
+The mod keeps the contract alive while its debris waits to be scanned. Debris that really expires still cancels the contract, as it should.
+
+[h2]One edge case[/h2]
+The mod notices a contract when one of your fleets enters a system, and once a month. If your science ship is already in the contract's system when you accept, [b]leave the system and come back[/b] before starting the analysis, or wait for the next month.
+
+[h2]Compatibility[/h2]
+[list]
+[*]Built for Stellaris 4.6.x (tested on 4.6.0), also works on 4.5.x (tested on 4.5.4). Needs the Nomads DLC to matter.
+[*]Changes no vanilla files: two hidden events and two on_action hooks. Safe to add to a running campaign, and to remove again.
+[*]Changes the checksum: no achievements or Ironman while it is active.
+[*]Once Paradox fixes the contract in the game, this mod will be retired.
+[/list]
+
+[h2]Bugs & feedback[/h2]
+Leave a comment on the mod's [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3844863561]Steam Workshop page[/url].
+
+[i]Unofficial fan project, not affiliated with Paradox Interactive.[/i]

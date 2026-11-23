@@ -12,7 +12,7 @@ retire the mod (`AGENTS.md`).
 ## Checklist (first release, 1.0.0)
 
 - [x] The bug survives 4.6.0, and the fix works there (`AGENTS.md`, "Test run 1"); its one edge
-      case is in the store texts below.
+      case is in the store text (`store/`).
 - [x] `version="1.0.0"`, `supported_version="v4.6.*"`, tags, `picture="thumbnail.png"`
       (512×512, our own art).
 - [x] `ls -A scan_debris_fix` lists only `common/ descriptor.mod events/ thumbnail.png` (the
@@ -21,19 +21,18 @@ retire the mod (`AGENTS.md`).
 - [ ] Launcher closed → `scripts/link-mod.sh stellaris-mod-ScanDebrisFix/scan_debris_fix` →
       launcher open. On Linux the upload dialog may not see a **symlinked** mod: then copy the
       folder into `<user dir>/mod/` and upload the copy.
-- [x] Upload to **Steam Workshop** (description: BBCode below, then the "More from me" block from
-      `../docs/store-more-from-me.md`). A first upload starts **Hidden**: set it Public. The
-      launcher writes `remote_file_id` into `descriptor.mod`: commit it.
-- [x] Upload to **Paradox Mods** (plain text below; format headings, lists and links with the
-      website editor, then check the saved page). Its ID is `remotePdxId` in the launcher's
+- [x] Upload to **Steam Workshop** (description: `store/scan_debris_fix.bbcode`, then the "More
+      from me" block). A first upload starts **Hidden**: set it Public. The launcher writes
+      `remote_file_id` into `descriptor.mod`: commit it.
+- [x] Upload to **Paradox Mods** (the 1.0.0 text was pasted and formatted in the website editor;
+      `scripts/store_texts.py` fills it since). Its ID is `remotePdxId` in the launcher's
       `launcher-v2.sqlite` (`mods` table; read a copy).
-- [ ] IDs into the table below; this mod's line into both blocks of
-      `../docs/store-more-from-me.md` (and its "Where it goes" table), then re-paste the blocks
-      into every other public mod's descriptions; a line in
-      `~/Projects/workspace_oss/releases/mods.txt`.
+- [x] IDs into the table below; this mod's line into `../docs/store-more-from-me.md` (block
+      and "Where it goes" table); a line in `~/Projects/workspace_oss/releases/mods.txt`. The
+      other mods' pages show it after their next upload (`scripts/store_texts.py --all` first).
 - [x] Post `docs/forum-bug-report.md` in Paradox's Stellaris bug report forum (2026-11-23, linked
       above).
-- [ ] GitHub repo public; workspace `AGENTS.md`: move ScanDebrisFix to the public list.
+- [x] GitHub repo public (2026-11-23); workspace `AGENTS.md` and `bootstrap.sh` list it.
 
 ## Published IDs
 
@@ -46,74 +45,6 @@ Published 2026-11-23 (Workshop public; Paradox Mods still answered 403 "User doe
 
 Paradox bug report: https://forum.paradoxplaza.com/forum/threads/scan-debris-contract-fails-the-day-the-science-ship-starts-analysing-the-debris.1951553/ (posted 2026-11-23)
 
-## "More from me" lines (for `../docs/store-more-from-me.md`, once the IDs exist)
+## Store description
 
-```bbcode
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3844863561]Scan Debris Contract Fix[/url] — nomads: the Scan Debris contract no longer fails the moment your science ship starts the analysis.
-```
-
-```text
-• Scan Debris Contract Fix — nomads: the Scan Debris contract no longer fails the moment your science ship starts the analysis. https://mods.paradoxplaza.com/mods/168883/Any
-```
-
----
-
-## Store description — Steam Workshop (BBCode)
-
-```bbcode
-[h1]Scan Debris Contract Fix[/h1]
-
-For nomadic empires (Nomads DLC): the [b]Scan Debris[/b] contract no longer fails the moment your science ship starts analysing the debris.
-
-[h2]The bug[/h2]
-Since 4.5.4 the contract cancels itself as soon as there is no debris left to scan in its system. Debris that is being analysed already counts as gone, so the contract fails the day you start the analysis, the one thing it asks you to do. 4.6.0 did not change that.
-
-[h2]The fix[/h2]
-The mod keeps the contract alive while its debris waits to be scanned. Debris that really expires still cancels the contract, as it should.
-
-[h2]One edge case[/h2]
-The mod notices a contract when one of your fleets enters a system, and once a month. If your science ship is already in the contract's system when you accept, [b]leave the system and come back[/b] before starting the analysis, or wait for the next month.
-
-[h2]Compatibility[/h2]
-[list]
-[*]Built for Stellaris 4.6.x (tested on 4.6.0), also works on 4.5.x (tested on 4.5.4). Needs the Nomads DLC to matter.
-[*]Changes no vanilla files: two hidden events and two on_action hooks. Safe to add to a running campaign, and to remove again.
-[*]Changes the checksum: no achievements or Ironman while it is active.
-[*]Once Paradox fixes the contract in the game, this mod will be retired.
-[/list]
-
-[h2]Bugs & feedback[/h2]
-Leave a comment below.
-
-[i]Unofficial fan project, not affiliated with Paradox Interactive.[/i]
-```
-
----
-
-## Store description — Paradox Mods (plain text)
-
-```text
-Scan Debris Contract Fix
-
-For nomadic empires (Nomads DLC): the Scan Debris contract no longer fails the moment your science ship starts analysing the debris.
-
-The bug
-Since 4.5.4 the contract cancels itself as soon as there is no debris left to scan in its system. Debris that is being analysed already counts as gone, so the contract fails the day you start the analysis, the one thing it asks you to do. 4.6.0 did not change that.
-
-The fix
-The mod keeps the contract alive while its debris waits to be scanned. Debris that really expires still cancels the contract, as it should.
-
-One edge case
-The mod notices a contract when one of your fleets enters a system, and once a month. If your science ship is already in the contract's system when you accept, leave the system and come back before starting the analysis, or wait for the next month.
-
-Compatibility
-• Built for Stellaris 4.6.x (tested on 4.6.0), also works on 4.5.x (tested on 4.5.4). Needs the Nomads DLC to matter.
-• Changes no vanilla files: two hidden events and two on_action hooks. Safe to add to a running campaign, and to remove again.
-• Changes the checksum: no achievements or Ironman while it is active.
-• Once Paradox fixes the contract in the game, this mod will be retired.
-
-Bugs & feedback
-Leave a comment on the mod's Steam Workshop page: https://steamcommunity.com/sharedfiles/filedetails/?id=3844863561
-
-Unofficial fan project, not affiliated with Paradox Interactive.
-```
+`store/scan_debris_fix.bbcode` is the Steam Workshop text (BBCode). `scripts/store_texts.py` in the workspace (run by `slink`, or on its own with the launcher closed) writes it into the launcher's upload form, with the "More from me" block appended, and makes the Paradox Mods HTML and short description from it. Edit the file, never the form.

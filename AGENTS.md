@@ -1,9 +1,8 @@
 # Scan Debris Contract Fix
 
 Stellaris mod (game **4.5.x and 4.6.0**): a nomad's "Scan Debris" contract no longer fails the day its
-science ship starts the analysis. Workspace context: `../AGENTS.md`. Private until published:
-publish only if the bug survives 4.6.0 (decided 2026-11-22), together with a Paradox forum bug
-report.
+science ship starts the analysis. Workspace context: `../AGENTS.md`. Public since 1.0.0
+(2026-11-23), with a Paradox forum bug report; retired once vanilla fixes the contract.
 
 Conventions, as in the sibling mods:
 - Only `scan_debris_fix/` ships; the top level is dev material. Register it with
