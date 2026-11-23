@@ -66,7 +66,10 @@ aborts before acceptance tells no one. `sdf.92` logs daily for five days whether
 still sees it. Run 4 (2201.01.02): seen on the issue day, gone the next — and gone from the save,
 not only unavailable (debris lasts `DEBRIS_DAYS` 1800). Suspect, unconfirmed: our own arkship was
 in that system (Brightpool, runs 3 and 4) with the debris policy on Scavenge. Next: a system
-without our fleets (`sdf.90` warns).
+without our fleets. Selecting a star where we have no fleet does not work in game (user), so
+`sdf.93` (nothing selected) picks a system next to our capital without our fleets; `sdf.90`
+(selected star) warns when ours are there. Their shared body: `sdf_test_wreck` and
+`sdf_test_can_start` (`common/scripted_*/sdf_test_*.txt`, test-only).
 
 To check: the contract survives starting the analysis and completes; `error.log` has no `sdf_`
 lines; `has_country_flag = scan_debris_contract_scanned` is set while the contract waits.

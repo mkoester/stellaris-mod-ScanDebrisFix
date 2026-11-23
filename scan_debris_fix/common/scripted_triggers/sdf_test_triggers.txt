@@ -1,0 +1,12 @@
+# Test helpers for sdf_debug_events.txt (sdf.90, sdf.93). Not used by the fix itself.
+
+# this = any scope: may a test start? Not while one waits for its contract, and only with an AI
+# empire that can issue contracts and talks to us.
+sdf_test_can_start = {
+	NOT = { has_global_flag = sdf_test_pending }
+	any_country = {
+		is_ai = yes
+		can_issue_contracts_trigger = yes
+		any_country = { is_ai = no has_communications = prev }
+	}
+}

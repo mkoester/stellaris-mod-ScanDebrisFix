@@ -1,0 +1,49 @@
+# Test helpers for sdf_debug_events.txt (sdf.90, sdf.93). Not used by the fix itself.
+
+# Why a test cannot start, in game.log.
+sdf_test_refused = {
+	if = {
+		limit = { has_global_flag = sdf_test_pending }
+		log = "SDF test: refused - the last test has not issued its contract yet"
+	}
+	else = {
+		log = "SDF test: refused - no AI empire that can issue contracts talks to us (devtools.5)"
+	}
+}
+
+# event_target:sdf_test_system set: an AI empire that talks to us loses a corvette at its star,
+# leaving debris it owns; sdf.91 issues the contract a day later.
+sdf_test_wreck = {
+	set_global_flag = sdf_test_pending
+	random_country = {
+		limit = { is_ai = no }
+		save_global_event_target_as = sdf_test_operator
+	}
+	random_country = {
+		limit = {
+			is_ai = yes
+			can_issue_contracts_trigger = yes
+			has_communications = event_target:sdf_test_operator
+		}
+		save_global_event_target_as = sdf_test_issuer
+		create_fleet = {
+			name = "SDF Test Wreck"
+			effect = {
+				set_owner = event_target:sdf_test_issuer
+				create_ship = { name = random random_existing_design = corvette }
+				set_location = event_target:sdf_test_system.star
+			}
+		}
+		last_created_fleet = { destroy_and_spawn_debris_for = event_target:sdf_test_issuer }
+		country_event = { id = sdf.91 days = 1 }
+		event_target:sdf_test_system = {
+			log = "SDF test: debris for \\[sdf_test_issuer.GetName] in \\[This.GetName]"
+			if = {
+				limit = {
+					any_fleet_in_system = { owner = { is_same_value = event_target:sdf_test_operator } }
+				}
+				log = "SDF test: warning - our fleets are in \\[This.GetName] and may scavenge the debris"
+			}
+		}
+	}
+}

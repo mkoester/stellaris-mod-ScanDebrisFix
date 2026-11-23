@@ -19,64 +19,57 @@ namespace = sdf
 # whether the issuer still sees the debris (issued_abort_trigger aborts the day it does not).
 # Run 4: seen on the issue day, gone the next - not "unavailable" but gone from the save (debris
 # lasts DEBRIS_DAYS = 1800, analysing takes 90). Suspect: our own arkship sat in that system with
-# the debris policy on Scavenge. Pick a system without our fleets; sdf.90 warns otherwise.
+# the debris policy on Scavenge. sdf.93 picks a system without our fleets; sdf.90 warns.
 
 
+# Selected star or planet: in its system.
 event = {
 	id = sdf.90
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {
 		if = {
-			limit = { has_global_flag = sdf_test_pending }
-			log = "SDF test: refused - the last sdf.90 has not issued its contract yet"
+			limit = { sdf_test_can_start = no }
+			sdf_test_refused = yes
+		}
+		else = {
+			solar_system = { save_global_event_target_as = sdf_test_system }
+			sdf_test_wreck = yes
+		}
+	}
+}
+
+# Nothing selected: a system next to our capital (the arkship) without our fleets - our nomads
+# would scavenge the debris (run 4). One jump for the science ship.
+country_event = {
+	id = sdf.93
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = { sdf_test_can_start = no }
+			sdf_test_refused = yes
 		}
 		else_if = {
 			limit = {
-				NOT = {
-					any_country = {
-						is_ai = yes
-						can_issue_contracts_trigger = yes
-						any_country = { is_ai = no has_communications = prev }
+				capital_scope.solar_system = {
+					NOT = {
+						any_neighbor_system = {
+							NOT = { any_fleet_in_system = { owner = { is_same_value = root } } }
+						}
 					}
 				}
 			}
-			log = "SDF test: refused - no AI empire that can issue contracts talks to us (devtools.5)"
+			log = "SDF test: refused - every system next to our capital has a fleet of ours"
 		}
 		else = {
-			set_global_flag = sdf_test_pending
-			solar_system = { save_global_event_target_as = sdf_test_system }
-			random_country = {
-				limit = { is_ai = no }
-				save_global_event_target_as = sdf_test_operator
-			}
-			random_country = {
-				limit = {
-					is_ai = yes
-					can_issue_contracts_trigger = yes
-					has_communications = event_target:sdf_test_operator
-				}
-				save_global_event_target_as = sdf_test_issuer
-				create_fleet = {
-					name = "SDF Test Wreck"
-					effect = {
-						set_owner = event_target:sdf_test_issuer
-						create_ship = { name = random random_existing_design = corvette }
-						set_location = event_target:sdf_test_system.star
-					}
-				}
-				last_created_fleet = { destroy_and_spawn_debris_for = event_target:sdf_test_issuer }
-				country_event = { id = sdf.91 days = 1 }
-				event_target:sdf_test_system = {
-					log = "SDF test: debris for [sdf_test_issuer.GetName] in [This.GetName]"
-					if = {
-						limit = {
-							any_fleet_in_system = { owner = { is_same_value = event_target:sdf_test_operator } }
-						}
-						log = "SDF test: warning - our fleets are in [This.GetName] and may scavenge the debris"
-					}
+			capital_scope.solar_system = {
+				random_neighbor_system = {
+					limit = { NOT = { any_fleet_in_system = { owner = { is_same_value = root } } } }
+					save_global_event_target_as = sdf_test_system
 				}
 			}
+			sdf_test_wreck = yes
 		}
 	}
 }
