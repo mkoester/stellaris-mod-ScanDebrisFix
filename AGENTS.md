@@ -37,6 +37,14 @@ definition, and an override would freeze the 4.5.4 contract into 4.6.
 Known gap: a ship already in the target system when the contract is accepted, ordered to analyse
 before the next monthly pulse, still fails. Expired debris still cancels, up to 360 days late.
 
+## Still in 4.6.0 (checked 2026-11-23)
+
+4.6.0 "Corona Borealis" left `common/missions/missions/02_contracts.txt` untouched (file dated
+2026-11-13, the 4.5.4 one): the `abort_trigger` clause is the same, and `nomads.3035` still sets
+the flag only on completion. No line of the 4.6.0 release notes names the contract. So the bug
+survives 4.6.0, the condition for publishing this mod with a forum bug report. Test run 1 on 4.6
+comes first.
+
 ## Test run 1: not run yet
 
 To check: the contract survives starting the analysis and completes; `error.log` has no `sdf_`
