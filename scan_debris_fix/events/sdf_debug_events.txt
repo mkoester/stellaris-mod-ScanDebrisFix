@@ -1,0 +1,62 @@
+namespace = sdf
+
+# Test shortcuts for a throwaway game (Test run 1). Play a nomad empire; run devtools.5 (or meet an
+# empire) first: the issuer needs communications with us. Select a star or a planet, then
+#   event sdf.90
+# An AI empire that can issue contracts loses a science ship there, leaving debris it owns
+# (destroy_and_spawn_debris_for, effects.log); a day later (sdf.91) it issues the Scan Debris
+# contract there, for us only. Each step logs an "SDF test" line to game.log.
+
+event = {
+	id = sdf.90
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		solar_system = { save_global_event_target_as = sdf_test_system }
+		random_country = {
+			limit = { is_ai = no }
+			save_global_event_target_as = sdf_test_operator
+		}
+		random_country = {
+			limit = {
+				is_ai = yes
+				can_issue_contracts_trigger = yes
+				has_communications = event_target:sdf_test_operator
+			}
+			save_global_event_target_as = sdf_test_issuer
+			create_fleet = {
+				name = "SDF Test Wreck"
+				effect = {
+					set_owner = event_target:sdf_test_issuer
+					create_ship = { name = random random_existing_design = science }
+					set_location = event_target:sdf_test_system.star
+				}
+			}
+			last_created_fleet = { destroy_and_spawn_debris_for = event_target:sdf_test_issuer }
+			country_event = { id = sdf.91 days = 1 }
+			event_target:sdf_test_system = {
+				log = "SDF test: debris for \\[sdf_test_issuer.GetName] in \\[This.GetName]"
+			}
+		}
+	}
+}
+
+# this = the issuer, a day after sdf.90.
+country_event = {
+	id = sdf.91
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		issue_contract = {
+			contract = contract_scan_debris
+			location = event_target:sdf_test_system
+			target = event_target:sdf_test_operator
+		}
+		event_target:sdf_test_system = {
+			log = "SDF test: \\[sdf_test_issuer.GetName] issued Scan Debris in \\[This.GetName]"
+		}
+		clear_global_event_target = sdf_test_system
+		clear_global_event_target = sdf_test_operator
+		clear_global_event_target = sdf_test_issuer
+	}
+}

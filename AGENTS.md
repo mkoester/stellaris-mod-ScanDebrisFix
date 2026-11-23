@@ -47,5 +47,12 @@ comes first.
 
 ## Test run 1: not run yet
 
+How (2026-11-23): a throwaway game as a nomad empire, `event devtools.5` (communications), select a
+star near the arkship, `event sdf.90` (`events/sdf_debug_events.txt`: an AI empire loses a science
+ship there, its debris; a day later `sdf.91` issues the contract to us). Accept it, send a science
+ship, start the analysis at once. Untested whether script-made debris counts as
+`any_available_debris` for the issuer, and whether `issue_contract` checks `potential_issuer`:
+`game.log` shows both `SDF test` lines; if the contract never appears, that is where to look.
+
 To check: the contract survives starting the analysis and completes; `error.log` has no `sdf_`
 lines; `has_country_flag = scan_debris_contract_scanned` is set while the contract waits.
