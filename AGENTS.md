@@ -70,6 +70,9 @@ without our fleets. Selecting a star where we have no fleet does not work in gam
 `sdf.93` (nothing selected) picks a system next to our capital without our fleets; `sdf.90`
 (selected star) warns when ours are there. Their shared body: `sdf_test_wreck` and
 `sdf_test_can_start` (`common/scripted_*/sdf_test_*.txt`, test-only).
+Run 5 (Higma, 2201.04.02, no fleet of ours there): gone the day after again. So not scavenging.
+Runs 2-5 wrecked the issuer's own corvette; vanilla destroys another empire's fleet for the
+victor. Now a third AI empire's corvette.
 
 To check: the contract survives starting the analysis and completes; `error.log` has no `sdf_`
 lines; `has_country_flag = scan_debris_contract_scanned` is set while the contract waits.

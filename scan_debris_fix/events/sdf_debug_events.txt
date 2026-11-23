@@ -122,6 +122,7 @@ country_event = {
 			clear_global_event_target = sdf_test_system
 			clear_global_event_target = sdf_test_operator
 			clear_global_event_target = sdf_test_issuer
+			clear_global_event_target = sdf_test_victim
 			remove_global_flag = sdf_test_pending
 		}
 	}
