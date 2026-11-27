@@ -44,6 +44,14 @@ the flag only on completion. No line of the 4.6.0 release notes names the contra
 survives 4.6.0, the condition for publishing this mod with a forum bug report. Test run 1 on 4.6
 comes first.
 
+## Still in 4.6.1 (open beta, checked 2026-11-27)
+
+`02_contracts.txt` is still the 4.5.4 file (dated 2026-11-13, with the same `abort_trigger`).
+`nomads.3035` changed file but not behaviour: it still sets the flag only on completion (a
+10-day timed flag), from the same three debris on_actions. The 4.6.1 notes and the preliminary
+4.6.2 notes do not name the contract. So the mod stays. Once 4.6.1 goes live, change "4.6.0"
+to "4.6.x" in the README and store text.
+
 ## Test run 1: passed (2026-11-23, game 4.6.0)
 
 The user's campaign `roamingcybergang_387306957`, save `2227.09.01` (a contract accepted
